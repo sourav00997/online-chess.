@@ -1,0 +1,14 @@
+{
+  "name": "online-chess",
+  "version": "1.0.0",
+  "description": "Online multiplayer chess with spectator mode",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "chess.js": "^1.4.0",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
