@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chess Game</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="game-container">
+
+    <h1>♟ Online Chess</h1>
+
+    <p id="gameInfo">Connecting...</p>
+
+    <div id="board"></div>
+
+    <div class="buttons">
+      <button onclick="copyGameLink()">Copy Game Link</button>
+      <button onclick="watchGame()">Watch Game</button>
+    </div>
+
+    <p id="status"></p>
+
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chess.js@1.0.0/dist/chess.min.js"></script>
+
+  <script src="/game.js"></script>
+
+</body>
+</html>
