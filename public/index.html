@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Chess</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>♟ Online Chess</h1>
+    <p>Play chess with another player or watch a game.</p>
+
+    <button onclick="createGame()">Create Game</button>
+
+    <div class="join-box">
+      <input id="gameId" type="text" placeholder="Enter Game ID">
+      <button onclick="joinGame()">Join Game</button>
+    </div>
+
+    <div id="message"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    function createGame() {
+      socket.emit("createGame", (data) => {
+        if (data.error) {
+          document.getElementById("message").textContent = data.error;
+          return;
+        }
+
+        window.location.href =
+          "/game.html?game=" + data.gameId + "&color=" + data.color;
+      });
+    }
+
+    function joinGame() {
+      const gameId = document.getElementById("gameId").value.trim();
+
+      if (!gameId) {
+        document.getElementById("message").textContent =
+          "Please enter Game ID";
+        return;
+      }
+
+      socket.emit("joinGame", { gameId }, (data) => {
+        if (data.error) {
+          document.getElementById("message").textContent = data.error;
+          return;
+        }
+
+        window.location.href =
+          "/game.html?game=" + gameId + "&color=" + data.color;
+      });
+    }
+  </script>
+</body>
+</html>
